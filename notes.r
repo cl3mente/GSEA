@@ -1,64 +1,175 @@
-library(tidyverse)
-library(readxl)
+#AUROGENE - GSEA
+    #C2 Collection (report for FB23-2)
+    df <- read_tsv(r"(GSEA/Aurogene/FB23vsControl_Aurogene_C2.Gsea.1659172720632/gsea_report_for_FB23-2_1659172720632.tsv)")
 
-df <- as_tibble(read_excel(r"(1.1,2,3.vs.4,5,6.xlsx)")) %>%
-    transmute(
-        name = `gene_id`,
-        logFC = as.double(`log2(fold_change)`),
-        Pval = as.double(`p_value`),
-        logPval = -log(Pval, 10),
-        FDR = as.double(`q_value(FDR)`),
-                )
+    #Hallmark Collection (report for FB23-2)
+    df <- read_tsv(r"(GSEA/Aurogene/FB23vsControl_Aurogene_HALLMARK/gsea_report_for_FB23-2_1659167997837.tsv)")
 
-dfdown <- as_tibble(read_excel(r"(deseq2_3a8b6bf4670112_0.xlsx)", sheet = 2)) %>%
-    transmute(
-        name = `Gene name`,
-        logFC = logFC,
-        Pval = `P-value`,
-        logPval = -log(Pval, 10),
-        FDR = FDR
-                )
+    #Hallmark Collection (report for Control)
+    df <- read_tsv(r"(GSEA/Aurogene/FB23vsControl_Aurogene_HALLMARK/gsea_report_for_Control_1659167997837.tsv)")
 
-dfup <- as_tibble(read_excel(r"(deseq2_3a8b6bf4670112_0.xlsx)", sheet = 1)) %>%
-    transmute(
-        name = `Gene name`,
-        logFC = logFC,
-        Pval = `P-value`,
-        logPval = -log(Pval, 10),
-        FDR = FDR
-                )
+#FPKMlibrary - GSEA
+    #C2 Collection (report for FB23-2)
+    df <- read_tsv(r"(GSEA/fpkm/FB23vsControl_FPKM_C2.Gsea.1659176504362/gsea_report_for_FB23-2_1659176504362.tsv)")
 
-#background di tutti i geni
-    #devo prendere solo i geni "accesi" in almeno uno dei due fenotipi
-    #per trovare i geni accesi devo fare una media di FPKM, che deve essere > 1
-    #ricorda che FPKM è la quantità di RNA trovato nella cellula.
-bck <- df %>%
-    filter(average of control FPKM > 1 | average of treated FPKM > 1)
+    #Hallmark Collection (report for FB23-2)
+    df <- read_tsv(r"(GSEA/fpkm/FB23vsControl_FPKM_HALLMARK.Gsea.1659182157144/gsea_report_for_FB23-2_1659182157144.tsv)")
 
 
+#123 - GO
+#Gene Ontology disclaimer:
+    # nelle cartelle GO ci sono diverse
+    # analisi (upregulated, downregulated, completa).
+    # significa che io ho messo nella query i geni
+    # corrispondenti: nell'analisi "upregulated" GO ha calcolato
+    # i pathway a partire SOLO dai geni upregulated ecc.
+    # nell'analisi completa ci sono tutti i geni enriched.
 
-df <- rbind(dfup, dfdown)
-#solo geni significativi
-df %>%
+    ##   in queste directory ho messo solo le analisi complete
+
+    #Biological Process completo
+    df <-  read_tsv(r"(GO/123/Gene_Ontology_123_biological_function/analisi_completa_123_BP.txt)")
+
+    #Cellular Component completo 
+    df <-  read_tsv(r"(GO/123/Gene_Ontology_123_cellular_component/analisi_completa_123_cellular_component.txt)")
+
+    #Molecular Funx completo
+    df <-  read_tsv(r"(GO/123/Gene_Ontology_123_molecular_function/analisi_completa_123_MF.txt)") # nolint
+
+#deSeq - GO
+
+    # qua ci sono solo up e downregulated
+    # non mi ricordo più perchè
+    #Biological Process downregulated
+    df <- read_tsv(r"(GO/deseq/GO_deseq_BP/GO_deseq_downregulated_BP.txt)")
+
+    #Biological Process upregulated
+    df <- read_tsv(r"(GO/deseq/GO_deseq_BP/GO_deseq_upregulated_BP.txt)")
+
+
+#### SCRIPT
+
+#aggiungi variabile "significant - nonsignificant"
+df <- df %>%
+    select(c(NAME, SIZE, NES, `NOM p-val`, `FDR q-val`)) %>%
+        arrange(NES) %>%
+            mutate(
+                adjPvalue = ifelse(
+                df$`NOM p-val` <= 0.05,
+                "significant",
+                "non-significant"),
+                ) %>%
+                    view()
+
+#filtra i pvalue significativi
+df <- filter(df, `NOM p-val` <= 0.05)
+
+#barplot con Enrichment Score; specifica la significatività del risultato
+ggplot(df, aes(NAME, abs(NES), fill = NES)) +
+    geom_col() +
+    #scale_fill_manual(
+    #    values = c(
+    #        "significant" = "red",
+    #        "non-significant" = "gray")) 
+    scale_fill_gradient(
+        low = "#5e8319",
+        high = "#f32121",
+        space = "Lab",
+        #na.value = "grey50",
+        guide = "colourbar",
+        aesthetics = "fill"
+        ) +
+
+    coord_flip() +
+    labs(
+        x = "Pathway",
+        y = "Normalized Enrichment Score",
+        title = "C2 pathways Enrichment Score from GSEA")
+
+#rinomina e filtra i dati usciti da GO
+df <- df %>%
+    rename(
+        fold_enrichment = `upload_1 (fold Enrichment)`,
+     name = `GO biological process complete`
+        ) %>%
+    arrange(`fold_enrichment`) %>%
+    filter(
+        `upload_1 (raw P-value)` <= 0.05,
+        #`upload_1 (FDR)` <= 0.01
+        ) %>%
+    select(fold_enrichment, name)
+
+
+#barplot con Fold Enrichment e gradiente di colore
+ggplot(df,
+        mapping = aes(
+            x = name,
+            y = fold_enrichment
+            )) +
+    geom_col(
+        aes(fill = fold_enrichment)
+        ) +
+    scale_fill_gradient(
+        low = "#5e8319",
+        high = "#f32121",
+        space = "Lab",
+        #na.value = "grey50",
+        guide = "colourbar",
+        aesthetics = "fill"
+        ) +
+    coord_flip() +
+    theme(legend.position = "none") +
+    labs(title = "Enriched Pathways")
+
+#questo funziona
+
+
+df <- read.table(file = "clipboard", 
+    sep = "\t", header=TRUE)
+df1 <- read.table(file = "clipboard", 
+    sep = "\t", header=TRUE)
+df <- rbind(df, df1) %>%
+    as_tibble()
+
+
+write_tsv(df, "deseq2_data.tsv")
+
+df <- read_tsv(r"(deseq2_data.tsv)")
+
+df <- df %>%
+    mutate(P.value = as.numeric(gsub(",", ".", gsub("\\.", "", P.value))))
+
+
+flt <- df %>%
+    select(Gene.ID,Gene.name,logFC,P.value,FDR) %>%
+    filter(`P.value` <= 0.05) %>%
     filter(FDR <= 0.01) %>%
-    write_tsv(r"(geni_significativi.tsv)")
+    view()
+
+arrange(flt, desc(FDR))
+
+flt <- flt %>%
+    mutate(regulation = ifelse(logFC > 0, "upregulated", "downregulated"))
+
+
+
+up <- flt %>% filter(regulation == "upregulated")
+down <- flt %>% filter(regulation == "downregulated")
+
+
+write_clip(down$Gene.name)
 
 df %>%
-    filter(logFC < 0) %>%
-    write_tsv(r"(data_frames\deseq\geni_downregulated.tsv)")
-
-
-
-
-#volcano plot
-df %>%
-    transmute(
-    significant = ifelse(`FDR` <= 0.01, "yes", "no")
-    ) %>%
-
-    ggplot(aes(
-    x = `logFC`,
-    y = `logPval`,
-    color = `significant`,
-    alpha = .2)) +
-    geom_point()
+    ggplot(aes(x = Gene.ID, y = logFC)) +
+    geom_col(fill = logFC) +
+    scale_fill_gradient(
+    low = "#5e8319",
+    high = "#f32121",
+    space = "Lab",
+    na.value = "grey50",
+    guide = "colourbar",
+    aesthetics = "fill"
+    ) +
+    coord_flip() +
+    theme(legend.position="none") +
+    labs(title = "Fold Change")

@@ -1,0 +1,21 @@
+GO biological process complete	Homo sapiens - REFLIST (20589)	upload_1 (86)	upload_1 (expected)	upload_1 (over/under)	upload_1 (fold Enrichment)	upload_1 (raw P-value)	upload_1 (FDR)
+protein localization to CENP-A containing chromatin (GO:0061644)	4	3	.02	+	 > 100	2.40E-06	5.38E-03
+carbon dioxide transport (GO:0015670)	13	4	.05	+	73.66	6.37E-07	2.50E-03
+oxygen transport (GO:0015671)	15	4	.06	+	63.84	1.03E-06	3.23E-03
+one-carbon compound transport (GO:0019755)	24	5	.10	+	49.88	1.22E-07	6.35E-04
+gas transport (GO:0015669)	21	4	.09	+	45.60	3.30E-06	5.75E-03
+hydrogen peroxide catabolic process (GO:0042744)	28	4	.12	+	34.20	9.18E-06	1.31E-02
+sterol biosynthetic process (GO:0016126)	45	5	.19	+	26.60	2.02E-06	5.29E-03
+secondary alcohol biosynthetic process (GO:1902653)	38	4	.16	+	25.20	2.77E-05	2.55E-02
+cholesterol biosynthetic process (GO:0006695)	38	4	.16	+	25.20	2.77E-05	2.41E-02
+hydrogen peroxide metabolic process (GO:0042743)	40	4	.17	+	23.94	3.34E-05	2.62E-02
+nucleosome assembly (GO:0006334)	93	8	.39	+	20.59	9.49E-09	1.49E-04
+nucleosome organization (GO:0034728)	125	8	.52	+	15.32	8.26E-08	6.48E-04
+steroid biosynthetic process (GO:0006694)	117	6	.49	+	12.28	1.25E-05	1.40E-02
+cholesterol metabolic process (GO:0008203)	121	6	.51	+	11.87	1.50E-05	1.57E-02
+secondary alcohol metabolic process (GO:1902652)	131	6	.55	+	10.97	2.31E-05	2.26E-02
+sterol metabolic process (GO:0016125)	136	6	.57	+	10.56	2.83E-05	2.33E-02
+protein-DNA complex assembly (GO:0065004)	200	8	.84	+	9.58	2.48E-06	4.87E-03
+protein-DNA complex subunit organization (GO:0071824)	233	8	.97	+	8.22	7.36E-06	1.15E-02
+chromatin remodeling (GO:0006338)	323	9	1.35	+	6.67	9.89E-06	1.29E-02
+alcohol metabolic process (GO:0006066)	326	9	1.36	+	6.61	1.06E-05	1.28E-02

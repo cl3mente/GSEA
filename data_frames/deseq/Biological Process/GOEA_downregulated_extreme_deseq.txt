@@ -1,0 +1,23 @@
+GO biological process complete	Homo sapiens - REFLIST (20589)	upload_1 (170)	upload_1 (expected)	upload_1 (over/under)	upload_1 (fold Enrichment)	upload_1 (raw P-value)	upload_1 (FDR)
+L-serine biosynthetic process (GO:0006564)	7	4	.06	+	69.21	1.37E-06	2.69E-03
+L-serine metabolic process (GO:0006563)	13	4	.11	+	37.27	9.51E-06	1.06E-02
+serine family amino acid biosynthetic process (GO:0009070)	20	5	.17	+	30.28	1.62E-06	2.30E-03
+regulation of endoplasmic reticulum unfolded protein response (GO:1900101)	31	5	.26	+	19.53	1.07E-05	1.11E-02
+serine family amino acid metabolic process (GO:0009069)	38	5	.31	+	15.94	2.60E-05	2.14E-02
+cellular amino acid biosynthetic process (GO:0008652)	75	8	.62	+	12.92	4.01E-07	8.99E-04
+alpha-amino acid biosynthetic process (GO:1901607)	67	7	.55	+	12.65	2.48E-06	3.24E-03
+dicarboxylic acid metabolic process (GO:0043648)	90	8	.74	+	10.77	1.44E-06	2.51E-03
+glutamine family amino acid metabolic process (GO:0009064)	73	6	.60	+	9.95	4.68E-05	3.50E-02
+response to endoplasmic reticulum stress (GO:0034976)	222	15	1.83	+	8.18	1.13E-09	1.78E-05
+alpha-amino acid metabolic process (GO:1901605)	198	13	1.63	+	7.95	2.09E-08	1.64E-04
+response to unfolded protein (GO:0006986)	123	8	1.02	+	7.88	1.26E-05	1.24E-02
+response to topologically incorrect protein (GO:0035966)	145	8	1.20	+	6.68	3.87E-05	3.04E-02
+cellular amino acid metabolic process (GO:0006520)	283	15	2.34	+	6.42	2.51E-08	1.31E-04
+carboxylic acid biosynthetic process (GO:0046394)	272	11	2.25	+	4.90	2.26E-05	2.09E-02
+organic acid biosynthetic process (GO:0016053)	274	11	2.26	+	4.86	2.42E-05	2.10E-02
+small molecule biosynthetic process (GO:0044283)	449	16	3.71	+	4.32	1.48E-06	2.32E-03
+response to nutrient levels (GO:0031667)	470	14	3.88	+	3.61	4.71E-05	3.36E-02
+carboxylic acid metabolic process (GO:0019752)	822	24	6.79	+	3.54	1.12E-07	3.52E-04
+organic acid metabolic process (GO:0006082)	857	25	7.08	+	3.53	6.01E-08	2.36E-04
+oxoacid metabolic process (GO:0043436)	848	24	7.00	+	3.43	1.95E-07	5.10E-04
+small molecule metabolic process (GO:0044281)	1654	33	13.66	+	2.42	2.72E-06	3.28E-03
