@@ -60,9 +60,13 @@ df %>% mutate(
     ggplot(aes(
     x = `logFC`,
     y = `logPval`,
-    color = `significant`,
-    alpha = .2)) +
-    geom_point() +
+    color = `significant`)) +
+    geom_point(
+        alpha = 0.1
+    ) +
+    scale_color_manual(
+        values = c("black", "red")
+    ) +
     coord_cartesian(
         xlim = c(-5,5)
     )
@@ -107,6 +111,6 @@ p <- df %>%
         labs(title = "Extreme Upregulated (Bio Process)")
 p
 
-png("Extreme_Upregulated_BioProcess.png")
+png("123vs456_volcano_plot.png")
 print(last_plot())
 dev.off()
