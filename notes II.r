@@ -37,10 +37,22 @@ df <- rbind(dfup, dfdown)
     #devo prendere solo i geni "accesi" in almeno uno dei due fenotipi
     #per trovare i geni accesi devo fare una media di FPKM, che deve essere > 1
     #ricorda che FPKM è la "quantità" di RNA trovato nella cellula.
-bck <- df %>%
-    filter(average of control FPKM > 1 | average of treated FPKM > 1)
 
-
+bck <- read_excel(r"(Original Input/20220222_Aurogene_DanieleCarlini_FPKM.xlsx)") %>%
+    transmute(
+        name = name,
+        sample1 = as.double(`1`),
+        sample2 = as.double(`2`),
+        sample3 = as.double(`3`),
+        sample4 = as.double(`4`),
+        sample5 = as.double(`5`),
+        sample6 = as.double(`6`),
+        avgCONTROL = (sample1 + sample2 + sample3)/3,
+        avgTRT = (sample4 + sample5 + sample6)/3
+            ) %>%
+        filter(avgCONTROL > 1 | avgTRT > 1) %>%
+        view() %>%
+        write_tsv(r"(data_frames/aurogene/background.tsv)")
 
 #solo geni significativi
 df %>%
@@ -72,17 +84,15 @@ df %>% mutate(
     )
 
 
-df <- read_tsv(r"(data_frames/deseq/geni_downregulated_extreme.tsv)")
+df <- read_tsv(r"(data_frames/deseq/geni_upregulated_extreme.tsv)")
 write_clip(df$name)
 
 
 
-df <- as_tibble(read_delim(r"(data_frames\deseq\Biological Process\GOEA_upregulated_extreme_deseq.txt)"))
-
-df <- df %>%
+df <- as_tibble(read_delim(r"(data_frames\deseq\Cellular Component\GOEA_upregulated_extreme_deseq.txt)", , skip = 11))
     transmute(
-        name = `GO biological process complete`,
-        fold_enrichment = ifelse(`upload_1 (over/under)` == "+", as.double(`upload_1 (fold Enrichment)`), -1 * (as.double(`upload_1 (fold Enrichment)`))),
+        name = df[, 1],
+        fold_enrichment = as.double(`upload_1 (fold Enrichment)`),
         FDR = as.double(`upload_1 (FDR)`),
         Pval = `upload_1 (raw P-value)`
     )
@@ -114,3 +124,5 @@ p
 png("123vs456_volcano_plot.png")
 print(last_plot())
 dev.off()
+
+
