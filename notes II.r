@@ -89,14 +89,16 @@ write_clip(df$name)
 
 
 
-df <- as_tibble(read_delim(r"(data_frames\deseq\Cellular Component\GOEA_upregulated_extreme_deseq.txt)", , skip = 11))
+df <- as_tibble(read_delim(r"(data_frames\deseq\Cellular Component\GOEA_upregulated_extreme_deseq.txt)", , skip = 11)) %>%
     transmute(
-        name = df[, 1],
+        name = `GO cellular component complete`,
         fold_enrichment = as.double(`upload_1 (fold Enrichment)`),
         FDR = as.double(`upload_1 (FDR)`),
         Pval = `upload_1 (raw P-value)`
     )
-
+    
+df[is.na(df)] <- 100
+df <- as_tibble(df)
 
 p <- df %>%
     filter(FDR <= 0.01) %>%
@@ -118,10 +120,10 @@ p <- df %>%
             ) +
         coord_flip() +
         theme(legend.position = "none") +
-        labs(title = "Extreme Upregulated (Bio Process)")
+        labs(title = "Extreme Upregulated (Cellular Comp)")
 p
 
-png("123vs456_volcano_plot.png")
+png("Extreme_Upregulated_CellularComp.png")
 print(last_plot())
 dev.off()
 

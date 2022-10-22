@@ -1,0 +1,144 @@
+
+
+
+
+
+Analysis Type:	PANTHER Overrepresentation Test (Released 20221013)
+Annotation Version and Release Date:	GO Ontology database DOI:  10.5281/zenodo.6799722 Released 2022-07-01
+Analyzed List:	upload_1 (Homo sapiens)
+Reference List:	Homo sapiens (all genes in database)
+Test Type:	FISHER
+Correction:	FDR
+GO cellular component complete	Homo sapiens - REFLIST (20589)	upload_1 (2248)	upload_1 (expected)	upload_1 (over/under)	upload_1 (fold Enrichment)	upload_1 (raw P-value)	upload_1 (FDR)
+eukaryotic translation initiation factor 2B complex (GO:0005851)	6	6	.66	+	9.16	4.94E-04	1.06E-02
+Pwp2p-containing subcomplex of 90S preribosome (GO:0034388)	6	5	.66	+	7.63	2.56E-03	4.21E-02
+90S preribosome (GO:0030686)	29	18	3.17	+	5.68	1.95E-07	1.02E-05
+preribosome, small subunit precursor (GO:0030688)	16	9	1.75	+	5.15	4.03E-04	9.05E-03
+small-subunit processome (GO:0032040)	39	19	4.26	+	4.46	1.50E-06	6.95E-05
+preribosome, large subunit precursor (GO:0030687)	21	10	2.29	+	4.36	5.33E-04	1.11E-02
+preribosome (GO:0030684)	78	36	8.52	+	4.23	1.18E-10	8.03E-09
+MLL1 complex (GO:0071339)	31	13	3.38	+	3.84	2.19E-04	5.52E-03
+pericentriolar material (GO:0000242)	22	9	2.40	+	3.75	2.31E-03	3.87E-02
+MLL1/2 complex (GO:0044665)	32	13	3.49	+	3.72	2.80E-04	6.90E-03
+phosphatidylinositol 3-kinase complex (GO:0005942)	29	11	3.17	+	3.47	1.28E-03	2.44E-02
+transcription elongation factor complex (GO:0008023)	47	16	5.13	+	3.12	3.02E-04	7.35E-03
+SAGA-type complex (GO:0070461)	39	13	4.26	+	3.05	1.27E-03	2.45E-02
+euchromatin (GO:0000791)	60	20	6.55	+	3.05	7.14E-05	2.24E-03
+histone methyltransferase complex (GO:0035097)	62	20	6.77	+	2.95	1.03E-04	2.98E-03
+methyltransferase complex (GO:0034708)	93	28	10.15	+	2.76	1.72E-05	6.40E-04
+heterochromatin (GO:0000792)	80	22	8.73	+	2.52	3.50E-04	8.31E-03
+nuclear pore (GO:0005643)	99	27	10.81	+	2.50	1.12E-04	3.13E-03
+actomyosin (GO:0042641)	81	22	8.84	+	2.49	3.98E-04	9.03E-03
+proteasome complex (GO:0000502)	60	16	6.55	+	2.44	3.00E-03	4.82E-02
+cytoplasmic stress granule (GO:0010494)	87	23	9.50	+	2.42	5.29E-04	1.11E-02
+neuron projection cytoplasm (GO:0120111)	90	22	9.83	+	2.24	2.01E-03	3.45E-02
+inclusion body (GO:0016234)	78	19	8.52	+	2.23	3.14E-03	4.90E-02
+Sm-like protein family complex (GO:0120114)	83	20	9.06	+	2.21	2.59E-03	4.24E-02
+protein acetyltransferase complex (GO:0031248)	101	24	11.03	+	2.18	1.31E-03	2.47E-02
+acetyltransferase complex (GO:1902493)	101	24	11.03	+	2.18	1.31E-03	2.45E-02
+nuclear speck (GO:0016607)	419	99	45.75	+	2.16	1.11E-10	7.82E-09
+PML body (GO:0016605)	105	24	11.46	+	2.09	2.53E-03	4.21E-02
+ficolin-1-rich granule lumen (GO:1904813)	124	28	13.54	+	2.07	1.40E-03	2.57E-02
+nuclear periphery (GO:0034399)	148	33	16.16	+	2.04	5.89E-04	1.22E-02
+nuclear matrix (GO:0016363)	126	28	13.76	+	2.04	1.51E-03	2.76E-02
+nuclear protein-containing complex (GO:0140513)	1276	281	139.32	+	2.02	8.66E-25	1.04E-22
+condensed chromosome, centromeric region (GO:0000779)	173	38	18.89	+	2.01	2.61E-04	6.51E-03
+nuclear membrane (GO:0031965)	309	67	33.74	+	1.99	1.79E-06	7.96E-05
+chromosome, centromeric region (GO:0000775)	236	51	25.77	+	1.98	3.43E-05	1.23E-03
+nuclear body (GO:0016604)	833	180	90.95	+	1.98	2.32E-15	1.90E-13
+ruffle (GO:0001726)	181	39	19.76	+	1.97	3.51E-04	8.25E-03
+kinetochore (GO:0000776)	163	35	17.80	+	1.97	6.72E-04	1.36E-02
+nucleolus (GO:0005730)	1002	212	109.40	+	1.94	3.92E-17	4.01E-15
+chromosomal region (GO:0098687)	375	78	40.94	+	1.91	9.24E-07	4.49E-05
+fibrillar center (GO:0001650)	145	30	15.83	+	1.89	3.00E-03	4.79E-02
+cullin-RING ubiquitin ligase complex (GO:0031461)	179	37	19.54	+	1.89	7.87E-04	1.53E-02
+RNA polymerase II transcription regulator complex (GO:0090575)	251	51	27.41	+	1.86	1.29E-04	3.46E-03
+spliceosomal complex (GO:0005681)	197	40	21.51	+	1.86	6.33E-04	1.29E-02
+ribonucleoprotein granule (GO:0035770)	267	54	29.15	+	1.85	9.34E-05	2.73E-03
+transferase complex (GO:1990234)	847	170	92.48	+	1.84	3.45E-12	2.61E-10
+ribonucleoprotein complex (GO:1990904)	714	143	77.96	+	1.83	2.71E-10	1.79E-08
+ficolin-1-rich granule (GO:0101002)	185	37	20.20	+	1.83	1.39E-03	2.58E-02
+transferase complex, transferring phosphorus-containing groups (GO:0061695)	300	60	32.76	+	1.83	5.09E-05	1.76E-03
+mitotic spindle (GO:0072686)	183	36	19.98	+	1.80	1.97E-03	3.44E-02
+spindle pole (GO:0000922)	173	34	18.89	+	1.80	3.08E-03	4.84E-02
+ubiquitin ligase complex (GO:0000151)	311	61	33.96	+	1.80	6.88E-05	2.23E-03
+midbody (GO:0030496)	204	40	22.27	+	1.80	1.55E-03	2.81E-02
+nuclear envelope (GO:0005635)	490	96	53.50	+	1.79	6.99E-07	3.48E-05
+cell cortex (GO:0005938)	317	62	34.61	+	1.79	7.85E-05	2.39E-03
+nucleoplasm (GO:0005654)	4130	799	450.93	+	1.77	6.53E-58	1.48E-55
+intracellular protein-containing complex (GO:0140535)	898	173	98.05	+	1.76	3.71E-11	2.71E-09
+cytoplasmic ribonucleoprotein granule (GO:0036464)	250	48	27.30	+	1.76	7.87E-04	1.55E-02
+condensed chromosome (GO:0000793)	273	52	29.81	+	1.74	4.69E-04	1.03E-02
+nuclear lumen (GO:0031981)	4494	850	490.68	+	1.73	6.33E-59	3.23E-56
+mitochondrial protein-containing complex (GO:0098798)	293	54	31.99	+	1.69	7.20E-04	1.44E-02
+cell leading edge (GO:0031252)	427	78	46.62	+	1.67	5.74E-05	1.89E-03
+catalytic complex (GO:1902494)	1686	305	184.09	+	1.66	6.41E-16	5.69E-14
+spindle (GO:0005819)	428	77	46.73	+	1.65	1.07E-04	3.03E-03
+centrosome (GO:0005813)	634	114	69.22	+	1.65	2.48E-06	1.06E-04
+organelle lumen (GO:0043233)	5614	992	612.96	+	1.62	1.05E-58	4.29E-56
+intracellular organelle lumen (GO:0070013)	5614	992	612.96	+	1.62	1.05E-58	3.58E-56
+membrane-enclosed lumen (GO:0031974)	5614	992	612.96	+	1.62	1.05E-58	3.07E-56
+actin cytoskeleton (GO:0015629)	510	90	55.68	+	1.62	5.15E-05	1.75E-03
+secretory granule lumen (GO:0034774)	320	56	34.94	+	1.60	1.61E-03	2.89E-02
+cytoplasmic vesicle lumen (GO:0060205)	323	56	35.27	+	1.59	2.21E-03	3.76E-02
+cytosol (GO:0005829)	5458	943	595.93	+	1.58	1.82E-50	3.10E-48
+vesicle lumen (GO:0031983)	325	56	35.48	+	1.58	2.30E-03	3.89E-02
+envelope (GO:0031975)	1260	216	137.57	+	1.57	1.56E-09	9.99E-08
+organelle envelope (GO:0031967)	1260	216	137.57	+	1.57	1.56E-09	9.69E-08
+microtubule organizing center (GO:0005815)	840	143	91.71	+	1.56	1.72E-06	7.83E-05
+chromosome (GO:0005694)	1852	312	202.21	+	1.54	1.04E-12	8.18E-11
+transcription regulator complex (GO:0005667)	512	85	55.90	+	1.52	4.83E-04	1.05E-02
+focal adhesion (GO:0005925)	423	70	46.19	+	1.52	1.68E-03	2.98E-02
+intracellular non-membrane-bounded organelle (GO:0043232)	5225	858	570.49	+	1.50	2.37E-36	3.45E-34
+non-membrane-bounded organelle (GO:0043228)	5226	858	570.60	+	1.50	2.41E-36	3.28E-34
+perinuclear region of cytoplasm (GO:0048471)	742	121	81.01	+	1.49	6.99E-05	2.23E-03
+cell-substrate junction (GO:0030055)	433	70	47.28	+	1.48	3.06E-03	4.85E-02
+microtubule cytoskeleton (GO:0015630)	1374	222	150.02	+	1.48	7.51E-08	4.15E-06
+mitochondrion (GO:0005739)	1671	267	182.45	+	1.46	6.66E-09	3.89E-07
+cell-cell junction (GO:0005911)	508	81	55.47	+	1.46	1.99E-03	3.44E-02
+mitochondrial inner membrane (GO:0005743)	497	79	54.26	+	1.46	2.83E-03	4.58E-02
+mitochondrial matrix (GO:0005759)	486	77	53.06	+	1.45	3.21E-03	4.96E-02
+nucleus (GO:0005634)	7682	1211	838.76	+	1.44	2.39E-51	4.44E-49
+mitochondrial membrane (GO:0031966)	749	117	81.78	+	1.43	3.79E-04	8.71E-03
+mitochondrial envelope (GO:0005740)	798	124	87.13	+	1.42	3.63E-04	8.42E-03
+chromatin (GO:0000785)	1278	197	139.54	+	1.41	7.27E-06	2.91E-04
+protein-containing complex (GO:0032991)	5771	889	630.10	+	1.41	1.02E-28	1.30E-26
+anchoring junction (GO:0070161)	1336	205	145.87	+	1.41	5.95E-06	2.43E-04
+cytoskeleton (GO:0005856)	2401	364	262.15	+	1.39	1.87E-09	1.12E-07
+vesicle membrane (GO:0012506)	1215	177	132.66	+	1.33	3.42E-04	8.21E-03
+cytoplasmic vesicle membrane (GO:0030659)	1196	174	130.58	+	1.33	4.40E-04	9.77E-03
+supramolecular complex (GO:0099080)	1410	200	153.95	+	1.30	5.07E-04	1.08E-02
+intracellular membrane-bounded organelle (GO:0043231)	12154	1717	1327.03	+	1.29	5.66E-61	3.86E-58
+cytoplasmic vesicle (GO:0031410)	2493	348	272.20	+	1.28	7.43E-06	2.92E-04
+intracellular vesicle (GO:0097708)	2496	348	272.52	+	1.28	8.73E-06	3.36E-04
+cell junction (GO:0030054)	2136	297	233.22	+	1.27	5.43E-05	1.82E-03
+intracellular organelle (GO:0043229)	13254	1831	1447.13	+	1.27	1.09E-64	1.11E-61
+extracellular exosome (GO:0070062)	2100	290	229.29	+	1.26	1.18E-04	3.24E-03
+organelle membrane (GO:0031090)	3688	508	402.67	+	1.26	1.08E-07	5.79E-06
+cytoplasm (GO:0005737)	12097	1665	1320.81	+	1.26	3.05E-47	4.79E-45
+extracellular vesicle (GO:1903561)	2123	292	231.80	+	1.26	1.27E-04	3.47E-03
+extracellular organelle (GO:0043230)	2124	292	231.91	+	1.26	1.47E-04	3.84E-03
+extracellular membrane-bounded organelle (GO:0065010)	2124	292	231.91	+	1.26	1.47E-04	3.79E-03
+membrane-bounded organelle (GO:0043227)	13230	1796	1444.51	+	1.24	9.80E-54	2.00E-51
+intracellular anatomical structure (GO:0005622)	14945	2018	1631.76	+	1.24	2.28E-82	4.66E-79
+organelle (GO:0043226)	14064	1885	1535.57	+	1.23	5.63E-58	1.44E-55
+vesicle (GO:0031982)	3975	532	434.01	+	1.23	1.35E-06	6.40E-05
+endomembrane system (GO:0012505)	4749	620	518.52	+	1.20	2.38E-06	1.04E-04
+cellular anatomical entity (GO:0110165)	18802	2157	2052.89	+	1.05	1.95E-16	1.90E-14
+cellular_component (GO:0005575)	18949	2172	2068.94	+	1.05	9.42E-18	1.01E-15
+cell periphery (GO:0071944)	6460	612	705.33	-	.87	4.87E-05	1.72E-03
+plasma membrane (GO:0005886)	5977	564	652.60	-	.86	7.60E-05	2.35E-03
+extracellular region (GO:0005576)	4396	401	479.98	-	.84	8.55E-05	2.57E-03
+intrinsic component of membrane (GO:0031224)	5958	473	650.52	-	.73	5.78E-16	5.37E-14
+integral component of membrane (GO:0016021)	5799	458	633.16	-	.72	7.47E-16	6.35E-14
+intrinsic component of plasma membrane (GO:0031226)	1806	139	197.19	-	.70	1.67E-05	6.32E-04
+integral component of plasma membrane (GO:0005887)	1724	132	188.23	-	.70	2.28E-05	8.31E-04
+cell surface (GO:0009986)	995	74	108.64	-	.68	7.46E-04	1.48E-02
+plasma membrane protein complex (GO:0098797)	726	47	79.27	-	.59	2.16E-04	5.51E-03
+side of membrane (GO:0098552)	711	45	77.63	-	.58	1.43E-04	3.80E-03
+plasma membrane signaling receptor complex (GO:0098802)	330	18	36.03	-	.50	1.96E-03	3.46E-02
+Unclassified (UNCLASSIFIED)	1640	76	179.06	-	.42	9.42E-18	1.07E-15
+external side of plasma membrane (GO:0009897)	485	22	52.95	-	.42	5.14E-06	2.14E-04
+T cell receptor complex (GO:0042101)	149	0	16.27	-	 < 0.01	2.79E-07	1.43E-05
+immunoglobulin complex (GO:0019814)	188	0	20.53	-	 < 0.01	7.59E-09	4.31E-07
+immunoglobulin complex, circulating (GO:0042571)	94	0	10.26	-	 < 0.01	8.83E-05	2.61E-03

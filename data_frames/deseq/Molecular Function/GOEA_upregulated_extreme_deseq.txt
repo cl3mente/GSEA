@@ -1,0 +1,22 @@
+
+
+
+
+
+Analysis Type:	PANTHER Overrepresentation Test (Released 20221013)
+Annotation Version and Release Date:	GO Ontology database DOI:  10.5281/zenodo.6799722 Released 2022-07-01
+Analyzed List:	upload_1 (Homo sapiens)
+Reference List:	Homo sapiens (all genes in database)
+Test Type:	FISHER
+Correction:	FDR
+GO molecular function complete	Homo sapiens - REFLIST (20589)	upload_1 (86)	upload_1 (expected)	upload_1 (over/under)	upload_1 (fold Enrichment)	upload_1 (raw P-value)	upload_1 (FDR)
+haptoglobin binding (GO:0031720)	9	4	.04	+	 > 100	1.94E-07	3.21E-04
+oxygen carrier activity (GO:0005344)	13	4	.05	+	73.66	6.37E-07	6.34E-04
+structural constituent of chromatin (GO:0030527)	66	12	.28	+	43.53	4.20E-16	2.09E-12
+oxygen binding (GO:0019825)	37	4	.15	+	25.88	2.51E-05	1.79E-02
+oxidoreductase activity, acting on peroxide as acceptor (GO:0016684)	59	5	.25	+	20.29	6.96E-06	5.77E-03
+molecular carrier activity (GO:0140104)	85	5	.36	+	14.08	3.69E-05	2.04E-02
+organic acid binding (GO:0043177)	136	6	.57	+	10.56	2.83E-05	1.76E-02
+protein heterodimerization activity (GO:0046982)	327	12	1.37	+	8.79	1.60E-08	3.99E-05
+structural molecule activity (GO:0005198)	796	16	3.32	+	4.81	2.04E-07	2.54E-04
+oxidoreductase activity (GO:0016491)	741	12	3.10	+	3.88	6.44E-05	3.21E-02

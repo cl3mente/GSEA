@@ -1,0 +1,21 @@
+
+
+
+
+
+Analysis Type:	PANTHER Overrepresentation Test (Released 20221013)
+Annotation Version and Release Date:	GO Ontology database DOI:  10.5281/zenodo.6799722 Released 2022-07-01
+Analyzed List:	upload_1 (Homo sapiens)
+Reference List:	Homo sapiens (all genes in database)
+Test Type:	FISHER
+Correction:	FDR
+GO cellular component complete	Homo sapiens - REFLIST (20589)	upload_1 (86)	upload_1 (expected)	upload_1 (over/under)	upload_1 (fold Enrichment)	upload_1 (raw P-value)	upload_1 (FDR)
+CENP-A containing nucleosome (GO:0043505)	4	3	.02	+	 > 100	2.40E-06	8.18E-04
+CENP-A containing chromatin (GO:0061638)	4	3	.02	+	 > 100	2.40E-06	7.01E-04
+chromosome, centromeric core domain (GO:0034506)	5	3	.02	+	 > 100	3.83E-06	9.79E-04
+haptoglobin-hemoglobin complex (GO:0031838)	10	4	.04	+	95.76	2.71E-07	1.38E-04
+hemoglobin complex (GO:0005833)	11	4	.05	+	87.06	3.68E-07	1.50E-04
+nucleosome (GO:0000786)	99	12	.41	+	29.02	3.42E-14	6.99E-11
+DNA packaging complex (GO:0044815)	146	12	.61	+	19.68	2.44E-12	2.50E-09
+protein-DNA complex (GO:0032993)	192	12	.80	+	14.96	4.97E-11	3.38E-08
+extracellular space (GO:0005615)	3430	29	14.33	+	2.02	1.16E-04	2.63E-02

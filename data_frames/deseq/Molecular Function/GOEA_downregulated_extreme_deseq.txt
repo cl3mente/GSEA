@@ -1,0 +1,15 @@
+
+
+
+
+
+Analysis Type:	PANTHER Overrepresentation Test (Released 20221013)
+Annotation Version and Release Date:	GO Ontology database DOI:  10.5281/zenodo.6799722 Released 2022-07-01
+Analyzed List:	upload_1 (Homo sapiens)
+Reference List:	Homo sapiens (all genes in database)
+Test Type:	FISHER
+Correction:	FDR
+GO molecular function complete	Homo sapiens - REFLIST (20589)	upload_1 (170)	upload_1 (expected)	upload_1 (over/under)	upload_1 (fold Enrichment)	upload_1 (raw P-value)	upload_1 (FDR)
+pyridoxal phosphate binding (GO:0030170)	55	7	.45	+	15.41	7.35E-07	3.66E-03
+vitamin B6 binding (GO:0070279)	56	7	.46	+	15.14	8.21E-07	2.04E-03
+vitamin binding (GO:0019842)	149	9	1.23	+	7.32	6.33E-06	1.05E-02

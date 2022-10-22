@@ -1,0 +1,18 @@
+
+
+
+
+
+Analysis Type:	PANTHER Overrepresentation Test (Released 20221013)
+Annotation Version and Release Date:	GO Ontology database DOI:  10.5281/zenodo.6799722 Released 2022-07-01
+Analyzed List:	upload_1 (Homo sapiens)
+Reference List:	Homo sapiens (all genes in database)
+Test Type:	FISHER
+Correction:	FDR
+GO cellular component complete	Homo sapiens - REFLIST (20589)	upload_1 (170)	upload_1 (expected)	upload_1 (over/under)	upload_1 (fold Enrichment)	upload_1 (raw P-value)	upload_1 (FDR)
+endoplasmic reticulum (GO:0005783)	2045	37	16.89	+	2.19	7.47E-06	1.53E-02
+extracellular exosome (GO:0070062)	2100	37	17.34	+	2.13	1.01E-05	6.88E-03
+extracellular vesicle (GO:1903561)	2123	37	17.53	+	2.11	1.20E-05	6.15E-03
+extracellular organelle (GO:0043230)	2124	37	17.54	+	2.11	1.21E-05	4.96E-03
+extracellular membrane-bounded organelle (GO:0065010)	2124	37	17.54	+	2.11	1.21E-05	4.13E-03
+cytoplasm (GO:0005737)	12097	128	99.88	+	1.28	9.73E-06	9.94E-03
