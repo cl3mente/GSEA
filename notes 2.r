@@ -177,3 +177,21 @@ print(last_plot())
 dev.off()
 
 
+
+
+
+
+#
+
+df <- transmute(df,
+    name = gene,
+    avgCONTROL = as.double(value_1),
+    avgTRT = as.double(value_2),
+    logFC = as.double(`log2(fold_change)`),
+    Pval = as.double(p_value),
+    logPval = -log(Pval, 10),
+    FDR = as.double(`q_value(FDR)`))
+
+
+
+
