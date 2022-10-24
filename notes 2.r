@@ -16,24 +16,18 @@ df <- as_tibble(read_excel(r"(1.1,2,3.vs.4,5,6.xlsx)")) %>%
         FDR = as.double(`q_value(FDR)`),
                 )
 
-dfdown <- as_tibble(read_excel(r"(deseq2_3a8b6bf4670112_0.xlsx)", sheet = 2)) %>%
+dfdown <- as_tibble(read_excel(r"(Original Input\deseq2_3a8b6bf4670112_0.xlsx)", sheet = 2))
+dfup <- as_tibble(read_excel(r"(Original Input\deseq2_3a8b6bf4670112_0.xlsx)", sheet = 1))
+df <- rbind(dfup, dfdown) %>%
     transmute(
         name = `Gene name`,
         logFC = logFC,
         Pval = `P-value`,
         logPval = -log(Pval, 10),
-        FDR = FDR
+        FDR = FDR,
+        avgREF = `Mean FPKM reference`,
+        avgQUERY = `Mean FPKM query`
                 )
-
-dfup <- as_tibble(read_excel(r"(deseq2_3a8b6bf4670112_0.xlsx)", sheet = 1)) %>%
-    transmute(
-        name = `Gene name`,
-        logFC = logFC,
-        Pval = `P-value`,
-        logPval = -log(Pval, 10),
-        FDR = FDR
-                ) 
-df <- rbind(dfup, dfdown)
 
 
 #background di tutti i geni
@@ -71,8 +65,10 @@ df %>%
 
 
 
-#volcano plot
-df %>% mutate(
+#   VOLCANO PLOT
+df %>% filter(
+    avgREF >= 1 | avgQUERY >= 1) %>%
+    mutate(
     significant = ifelse(`FDR` <= 0.01, "yes", "no")) %>%
     ggplot(aes(
     x = `logFC`,
