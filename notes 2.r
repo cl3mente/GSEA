@@ -89,27 +89,75 @@ df <- read_tsv(r"(data_frames/deseq/geni_upregulated_extreme.tsv)")
 write_clip(df$name)
 
 
+files <- list.files(r"(data_frames/deseq/Molecular Function/files)",full.names=TRUE, recursive=FALSE)
+files
 
+lapply(files, function(x) {
+    df <- as_tibble(read_delim(x, skip = 11)) %>%
+        transmute(
+            name = `GO molecular function complete`,
+            sign = ifelse(`upload_1 (over/under)` == "+", as.double(+1), as.double(-1)),
+            fold_enrichment = ifelse(is.numeric(`upload_1 (fold Enrichment)`) == TRUE, 
+                                    as.double(`upload_1 (fold Enrichment)`, 
+                                    ifelse(`upload_1 (fold Enrichment)` == ">100", 
+                                        as.double(100),
+                                        as.double(0))),
+            fold_enrichment = fold_enrichment * sign,
+            FDR = as.double(`upload_1 (FDR)`),
+            Pval = `upload_1 (raw P-value)`
+        ) %>%
+        select(-sign) %>%
+        filter(FDR <= 0.01) %>%
+        ggplot(
+                mapping = aes(
+                    x = name,
+                    y = fold_enrichment)) +
+                geom_col(
+                    aes(fill = fold_enrichment)) +
+                scale_fill_gradient(
+                    low = "#5e8319",
+                    high = "#f32121",
+                    space = "Lab",
+                    #na.value = "grey50",
+                    guide = "colourbar",
+                    aesthetics = "fill") +
+                coord_flip() +
+                theme(legend.position = "none") +
+                labs(title = "Downregulated (Molecular Function)") %>%
+
+
+    png("Downregulated_MolecularFunx.png")
+    print(x)
+    dev.off()
+    })
+
+
+
+
+
+#problema: 
 df <- as_tibble(
     read_delim(
-        r"(data_frames\deseq\Cellular Component\GOEA_downregulated_extreme_deseq.txt)", skip = 11)) %>%
+        r"(data_frames/deseq/Biological Process/GOEA_downregulated_deseq.txt)")) %>%
     transmute(
-        name = `GO cellular component complete`,
-        fold_enrichment = as.double(`upload_1 (fold Enrichment)`),
-        FDR = as.double(`upload_1 (FDR)`),
-        Pval = `upload_1 (raw P-value)`
-    )
+            name = `GO biological process complete`,
+            sign = ifelse(`upload_1 (over/under)` == "+", as.double(+1), as.double(-1)),
+            fold_enrichment = as.double(`upload_1 (fold Enrichment)`) * sign,
+            FDR = as.double(`upload_1 (FDR)`),
+            Pval = `upload_1 (raw P-value)`
+        ) %>%
+        select(-sign)
 
 df[is.na(df)] <- 0
 df <- as_tibble(df)
 
+
 p <- df %>%
-    filter(FDR <= 0.01) %>%
-    ggplot(df,
+    filter(FDR <= 0.01 & fold_enrichment > 2 | fold_enrichment < -2) %>%
+    ggplot(
             mapping = aes(
                 x = name,
-                y = fold_enrichment),
-                fig(1, 20)) +
+                y = fold_enrichment)) +
             geom_col(
                 aes(fill = fold_enrichment)) +
             scale_fill_gradient(
@@ -121,10 +169,10 @@ p <- df %>%
                 aesthetics = "fill") +
             coord_flip() +
             theme(legend.position = "none") +
-            labs(title = "Extreme Downregulated (Cellular Comp)")
+            labs(title = "Downregulated (BioProcess)")
+            
 p
-
-png("Extreme Downregulated_CellularComp.png")
+png("Downregulated_BioProcess.png")
 print(last_plot())
 dev.off()
 
