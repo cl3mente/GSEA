@@ -78,20 +78,20 @@ df %>%
 separateLists <- function(df) {
     filtered <- filter(df, avgCTRL > 1 | avgTRT > 1)
     filtered %>%
-    filter(logFC < -1 & FDR <= 0.01) %>%
-    write_tsv(r"(data_frames/123_vs_546/geni_downregulated_extreme.tsv)")
+        filter(logFC < -1 & FDR <= 0.01) %>%
+            write_tsv(r"(data_frames/123_vs_456/geni_downregulated_extreme.tsv)")
 
     filtered %>%
-    filter(logFC < 0 & FDR <= 0.01) %>%
-    write_tsv(r"(data_frames/123_vs_456/geni_downregulated.tsv)")
+        filter(logFC < 0 & FDR <= 0.01) %>%
+            write_tsv(r"(data_frames/123_vs_456/geni_downregulated.tsv)")
 
     filtered %>%
-    filter(logFC > 0 & FDR <= 0.01) %>%
-    write_tsv(r"(data_frames/123_vs_456/geni_upregulated.tsv)")
+        filter(logFC > 0 & FDR <= 0.01) %>%
+            write_tsv(r"(data_frames/123_vs_456/geni_upregulated.tsv)")
 
     filtered %>%
-    filter(logFC > +1 & FDR <= 0.01) %>%
-    write_tsv(r"(data_frames/123_vs_456/geni_upregulated_extreme.tsv)")
+        filter(logFC > +1 & FDR <= 0.01) %>%
+            write_tsv(r"(data_frames/123_vs_456/geni_upregulated_extreme.tsv)")
 }
 
 separateLists(df)
@@ -249,3 +249,19 @@ df <- transmute(df,
 
 
 
+#GOEA programmatic access
+
+df <- read_tsv(r"(data_frames/123_vs_456/geni_downregulated_extreme.tsv)")
+
+enriched <- df %>%
+                transmute(
+                    gene = name,
+                    `0/1` = 1
+                ) %>%
+                as.data.frame() %>%
+                go_enrich() %>%
+                write_tsv(r"(data_frames/123_vs_456/GOEA/GOEA_downregulated_extreme.tsv)")
+
+
+#mi dice che Homo.Sapiens non è installato
+Go_Enrich_Out<- go_enrich(df)
