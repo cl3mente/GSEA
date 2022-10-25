@@ -3,7 +3,9 @@ library(readxl)
 library(clipr)
 
 #importa file e riordina le variabili
-
+#importante: 
+    # 123 CTRL
+    # 456 TRT
 ####123VS456
 df <- as_tibble(read_excel(r"(Original Input/1.1,2,3.vs.4,5,6.xlsx)")) %>%
     transmute(
@@ -24,8 +26,8 @@ df$logFC[df$logFC == Inf] <- 3
 df$logFC[df$logFC == -Inf] <- -3
 
 ####DESEQ
-dfdown <- as_tibble(read_excel(r"(Original Input\deseq2_3a8b6bf4670112_0.xlsx)", sheet = 2))
-dfup <- as_tibble(read_excel(r"(Original Input\deseq2_3a8b6bf4670112_0.xlsx)", sheet = 1))
+dfdown <- as_tibble(read_excel(r"(Original Input/deseq2_3a8b6bf4670112_0.xlsx)", sheet = 2))
+dfup <- as_tibble(read_excel(r"(Original Input/deseq2_3a8b6bf4670112_0.xlsx)", sheet = 1))
 df <- rbind(dfup, dfdown) %>%
     transmute(
         name = `Gene name`,
@@ -68,7 +70,7 @@ df %>%
 
 df %>%
     filter(logFC < -1, FDR <= 0.01) %>%
-    write_tsv(r"(data_frames\deseq\geni_downregulated_extreme.tsv)")
+    write_tsv(r"(data_frames/deseq/geni_downregulated_extreme.tsv)")
 
 
 
@@ -77,19 +79,19 @@ separateLists <- function(df) {
     filtered <- filter(df, avgCTRL > 1 | avgTRT > 1)
     filtered %>%
     filter(logFC < -1 & FDR <= 0.01) %>%
-    write_tsv(r"(data_frames\123_vs_546\geni_downregulated_extreme.tsv)")
+    write_tsv(r"(data_frames/123_vs_546/geni_downregulated_extreme.tsv)")
 
     filtered %>%
     filter(logFC < 0 & FDR <= 0.01) %>%
-    write_tsv(r"(data_frames\123_vs_456\geni_downregulated.tsv)")
+    write_tsv(r"(data_frames/123_vs_456/geni_downregulated.tsv)")
 
     filtered %>%
     filter(logFC > 0 & FDR <= 0.01) %>%
-    write_tsv(r"(data_frames\123_vs_456\geni_upregulated.tsv)")
+    write_tsv(r"(data_frames/123_vs_456/geni_upregulated.tsv)")
 
     filtered %>%
     filter(logFC > +1 & FDR <= 0.01) %>%
-    write_tsv(r"(data_frames\123_vs_456\geni_upregulated_extreme.tsv)")
+    write_tsv(r"(data_frames/123_vs_456/geni_upregulated_extreme.tsv)")
 }
 
 separateLists(df)
