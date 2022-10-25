@@ -2,20 +2,28 @@ library(tidyverse)
 library(readxl)
 library(clipr)
 
-fig <- function(width, heigth){
-     options(repr.plot.width = width, repr.plot.height = heigth)
-}
-
 #importa file e riordina le variabili
-df <- as_tibble(read_excel(r"(1.1,2,3.vs.4,5,6.xlsx)")) %>%
+
+####123VS456
+df <- as_tibble(read_excel(r"(Original Input/1.1,2,3.vs.4,5,6.xlsx)")) %>%
     transmute(
         name = `gene_id`,
         logFC = as.double(`log2(fold_change)`),
         Pval = as.double(`p_value`),
         logPval = -log(Pval, 10),
         FDR = as.double(`q_value(FDR)`),
+        avgCTRL = as.double(value_1),
+        avgTRT = as.double(value_2)
                 )
 
+#siccome ci sono dei valori indefiniti
+# ho assegnato +Inf = +3
+# e -Inf = -3
+#l'ho fatto guardando i valori massimi e minimi nel df
+df$logFC[df$logFC == Inf] <- 3
+df$logFC[df$logFC == -Inf] <- -3
+
+####DESEQ
 dfdown <- as_tibble(read_excel(r"(Original Input\deseq2_3a8b6bf4670112_0.xlsx)", sheet = 2))
 dfup <- as_tibble(read_excel(r"(Original Input\deseq2_3a8b6bf4670112_0.xlsx)", sheet = 1))
 df <- rbind(dfup, dfdown) %>%
@@ -25,8 +33,8 @@ df <- rbind(dfup, dfdown) %>%
         Pval = `P-value`,
         logPval = -log(Pval, 10),
         FDR = FDR,
-        avgREF = `Mean FPKM reference`,
-        avgQUERY = `Mean FPKM query`
+        avgCTRL = `Mean FPKM reference`,
+        avgTRT = `Mean FPKM query`
                 )
 
 
@@ -64,26 +72,70 @@ df %>%
 
 
 
+# funzione per scrivere 4 file diversi con liste di geni
+separateLists <- function(df) {
+    filtered <- filter(df, avgCTRL > 1 | avgTRT > 1)
+    filtered %>%
+    filter(logFC < -1 & FDR <= 0.01) %>%
+    write_tsv(r"(data_frames\123_vs_546\geni_downregulated_extreme.tsv)")
 
-#   VOLCANO PLOT
-df %>% filter(
-    avgREF >= 1 | avgQUERY >= 1) %>%
-    mutate(
-    significant = ifelse(`FDR` <= 0.01, "yes", "no")) %>%
-    ggplot(aes(
-    x = `logFC`,
-    y = `logPval`,
-    color = `significant`)) +
-    geom_point(
-        alpha = 0.1
-    ) +
-    scale_color_manual(
-        values = c("black", "red")
-    ) +
-    coord_cartesian(
-        xlim = c(-5,5)
-    )
+    filtered %>%
+    filter(logFC < 0 & FDR <= 0.01) %>%
+    write_tsv(r"(data_frames\123_vs_456\geni_downregulated.tsv)")
 
+    filtered %>%
+    filter(logFC > 0 & FDR <= 0.01) %>%
+    write_tsv(r"(data_frames\123_vs_456\geni_upregulated.tsv)")
+
+    filtered %>%
+    filter(logFC > +1 & FDR <= 0.01) %>%
+    write_tsv(r"(data_frames\123_vs_456\geni_upregulated_extreme.tsv)")
+}
+
+separateLists(df)
+
+
+#   VOLCANO PLOT: Sotto c'è la Funzione
+# df %>% filter(
+#     avgCONTROL >= 1 | avgTRT >= 1) %>%
+#     mutate(
+#     significant = ifelse(`FDR` <= 0.01, "yes", "no")) %>%
+#     ggplot(aes(
+#     x = `logFC`,
+#     y = `logPval`,
+#     color = `significant`)) +
+#     geom_point(
+#         alpha = 0.1
+#     ) +
+#     scale_color_manual(
+#         values = c("black", "red")
+#     ) +
+#     coord_cartesian(
+#         xlim = c(-5,5),
+#         ylim = c(0,4)
+#     )
+
+
+volcano_plot <- function(df, xlim = c(-5,5), ylim = c(0,5)){
+    df %>% filter(
+        avgCTRL >= 1 | avgTRT >= 1) %>%
+            mutate(
+            significant = ifelse(`FDR` <= 0.01, "yes", "no")) %>%
+                ggplot(aes(
+                x = `logFC`,
+                y = `logPval`,
+                color = `significant`)) +
+                geom_point(
+                    alpha = 0.1
+                ) +
+                scale_color_manual(
+                    values = c("black", "red")
+                ) +
+                coord_cartesian(
+                    xlim = xlim,
+                    ylim = ylim
+                )
+}
 
 df <- read_tsv(r"(data_frames/deseq/geni_upregulated_extreme.tsv)")
 write_clip(df$name)
@@ -172,7 +224,7 @@ p <- df %>%
             labs(title = "Downregulated (BioProcess)")
             
 p
-png("Downregulated_BioProcess.png")
+png("deseq_zoom_volcano.png")
 print(last_plot())
 dev.off()
 
