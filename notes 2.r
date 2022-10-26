@@ -192,7 +192,7 @@ lapply(files, function(x) {
 #problema: 
 df <- as_tibble(
     read_delim(
-        r"(data_frames/deseq/Biological Process/GOEA_downregulated_extreme_deseq.txt)")) %>%
+        r"(data_frames/deseq/Biological Process/GOEA_upregulated_deseq.txt)")) %>%
     transmute(
             name = `GO biological process complete`,
             sign = ifelse(`upload_1 (over/under)` == "+", as.double(+1), as.double(-1)),
@@ -200,23 +200,24 @@ df <- as_tibble(
             FDR = as.double(`upload_1 (FDR)`),
             Pval = `upload_1 (raw P-value)`
         ) %>%
-        select(-sign)
+        select(-sign) %>%
+        arrange(fold_enrichment) %>%
+        mutate(name = fct(name, ))
 
 df[is.na(df)] <- 0
 df <- as_tibble(df)
 
 df <- df %>%
         arrange(fold_enrichment) %>%
-        mutate(name = as.factor(name))
+        mutate(name = fct(name, ))
 
 
-
+#ho aggiunto il filtro fold enrichment per avere 
 p <- df %>%
     filter(FDR <= 0.01 & fold_enrichment > 2 | fold_enrichment < -2) %>%
-    arrange(name) %>%
     ggplot(
             mapping = aes(
-                x = fct_infreq(name),
+                x = name,
                 y = fold_enrichment)) +
             geom_col(
                 aes(fill = fold_enrichment)) +
@@ -230,11 +231,10 @@ p <- df %>%
             coord_flip() +
             theme(legend.position = "none") +
             labs(title = "Downregulated (BioProcess)")
-            
 p
 
 
-png("deseq_zoom_volcano.png")
+png("data_frames/deseq/Biological Process/Extreme_Upregulated_BioProcess.png", width = "1920", height = "1080", unit = "px")
 print(last_plot())
 dev.off()
 
