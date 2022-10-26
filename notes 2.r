@@ -194,10 +194,10 @@ lapply(files, function(x) {
 
 df <- as_tibble(
     read_delim(
-        r"(data_frames/deseq/Cellular Component/GOEA_upregulated_extreme_deseq.txt)", 
+        r"(data_frames/deseq/Molecular Function/GOEA_downregulated_deseq.txt)", 
         skip = 11)) %>%
     transmute(
-            name = `GO cellular component complete`,
+            name = `GO molecular function complete`,
             sign = ifelse(`upload_1 (over/under)` == "+", as.double(+1), as.double(-1)),
             fold_enrichment = as.double(`upload_1 (fold Enrichment)`) * sign,
             FDR = as.double(`upload_1 (FDR)`),
@@ -207,6 +207,8 @@ df <- as_tibble(
         arrange(fold_enrichment) %>%
         mutate(name = fct(name))
 
+
+df[is.na(df)] <- 0
 
 p <- df %>%
     filter(FDR <= 0.01) %>%
@@ -225,11 +227,11 @@ p <- df %>%
                 aesthetics = "fill") +
             coord_flip() +
             theme(legend.position = "none") +
-            labs(title = "Extreme Upregulated (Cellular Comp)")
+            labs(title = "Downregulated (Molecular Funx)")
 p
 
 
-png(filename = r"(data_frames/deseq/Cellular Component/Upregulated_Extreme_CellularComp.png)", width = 1080, height = 1080)
+png(filename = r"(data_frames/deseq/Molecular Function/Downregulated_MolecularFunx.png)", width = 1920, height = 1080)
 print(last_plot())
 dev.off()
 
