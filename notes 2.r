@@ -192,7 +192,7 @@ lapply(files, function(x) {
 #problema: 
 df <- as_tibble(
     read_delim(
-        r"(data_frames/deseq/Biological Process/GOEA_downregulated_deseq.txt)")) %>%
+        r"(data_frames/deseq/Biological Process/GOEA_downregulated_extreme_deseq.txt)")) %>%
     transmute(
             name = `GO biological process complete`,
             sign = ifelse(`upload_1 (over/under)` == "+", as.double(+1), as.double(-1)),
@@ -205,12 +205,18 @@ df <- as_tibble(
 df[is.na(df)] <- 0
 df <- as_tibble(df)
 
+df <- df %>%
+        arrange(fold_enrichment) %>%
+        mutate(name = as.factor(name))
+
+
 
 p <- df %>%
     filter(FDR <= 0.01 & fold_enrichment > 2 | fold_enrichment < -2) %>%
+    arrange(name) %>%
     ggplot(
             mapping = aes(
-                x = name,
+                x = fct_infreq(name),
                 y = fold_enrichment)) +
             geom_col(
                 aes(fill = fold_enrichment)) +
@@ -226,6 +232,8 @@ p <- df %>%
             labs(title = "Downregulated (BioProcess)")
             
 p
+
+
 png("deseq_zoom_volcano.png")
 print(last_plot())
 dev.off()
@@ -253,15 +261,28 @@ df <- transmute(df,
 
 df <- read_tsv(r"(data_frames/123_vs_456/geni_downregulated_extreme.tsv)")
 
+
 enriched <- df %>%
                 transmute(
                     gene = name,
                     `0/1` = 1
                 ) %>%
                 as.data.frame() %>%
-                go_enrich() %>%
-                write_tsv(r"(data_frames/123_vs_456/GOEA/GOEA_downregulated_extreme.tsv)")
+                go_enrich()
 
 
-#mi dice che Homo.Sapiens non è installato
 Go_Enrich_Out<- go_enrich(df)
+
+input <- tibble(
+    gene = bck$name,
+    `0/1` = ifelse(bck$name %in% df$gene, 1, 0)
+    )
+
+enriched <- go_enrich(as.data.frame(input))
+
+df <- enriched$results
+df <- df %>%
+        transmute(
+            category = ontology,
+            
+        )
