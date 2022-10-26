@@ -189,12 +189,15 @@ lapply(files, function(x) {
 
 
 
-#problema: 
+#problema:
+#risolto
+
 df <- as_tibble(
     read_delim(
-        r"(data_frames/deseq/Biological Process/GOEA_upregulated_deseq.txt)")) %>%
+        r"(data_frames/deseq/Cellular Component/GOEA_upregulated_extreme_deseq.txt)", 
+        skip = 11)) %>%
     transmute(
-            name = `GO biological process complete`,
+            name = `GO cellular component complete`,
             sign = ifelse(`upload_1 (over/under)` == "+", as.double(+1), as.double(-1)),
             fold_enrichment = as.double(`upload_1 (fold Enrichment)`) * sign,
             FDR = as.double(`upload_1 (FDR)`),
@@ -202,18 +205,14 @@ df <- as_tibble(
         ) %>%
         select(-sign) %>%
         arrange(fold_enrichment) %>%
-        mutate(name = fct(name, ))
+        mutate(name = fct(name))
 
-df[is.na(df)] <- 0
-df <- as_tibble(df)
 
-#ho aggiunto il filtro fold enrichment
-#perchè erano troppe barre
 p <- df %>%
-    filter(FDR <= 0.01 & fold_enrichment > 2 | fold_enrichment < -2) %>%
+    filter(FDR <= 0.01) %>%
     ggplot(
             mapping = aes(
-                x = name,
+                x = `name`,
                 y = fold_enrichment)) +
             geom_col(
                 aes(fill = fold_enrichment)) +
@@ -226,11 +225,11 @@ p <- df %>%
                 aesthetics = "fill") +
             coord_flip() +
             theme(legend.position = "none") +
-            labs(title = "Upregulated (BioProcess)")
+            labs(title = "Extreme Upregulated (Cellular Comp)")
 p
 
 
-png(filename = r"(data_frames/deseq/Biological Process/Upregulated_BioProcess.png)", width = 1920, height = 1080)
+png(filename = r"(data_frames/deseq/Cellular Component/Upregulated_Extreme_CellularComp.png)", width = 1080, height = 1080)
 print(last_plot())
 dev.off()
 
