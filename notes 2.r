@@ -207,12 +207,8 @@ df <- as_tibble(
 df[is.na(df)] <- 0
 df <- as_tibble(df)
 
-df <- df %>%
-        arrange(fold_enrichment) %>%
-        mutate(name = fct(name, ))
-
-
-#ho aggiunto il filtro fold enrichment per avere 
+#ho aggiunto il filtro fold enrichment
+#perchè erano troppe barre
 p <- df %>%
     filter(FDR <= 0.01 & fold_enrichment > 2 | fold_enrichment < -2) %>%
     ggplot(
@@ -230,11 +226,11 @@ p <- df %>%
                 aesthetics = "fill") +
             coord_flip() +
             theme(legend.position = "none") +
-            labs(title = "Downregulated (BioProcess)")
+            labs(title = "Upregulated (BioProcess)")
 p
 
 
-png("data_frames/deseq/Biological Process/Extreme_Upregulated_BioProcess.png", width = "1920", height = "1080", unit = "px")
+png(filename = r"(data_frames/deseq/Biological Process/Upregulated_BioProcess.png)", width = 1920, height = 1080)
 print(last_plot())
 dev.off()
 
